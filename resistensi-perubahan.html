@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resistensi dalam Manajemen Perubahan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1a1a2e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            overflow: hidden;
+        }
+        
+        .presentation-container {
+            width: 100%;
+            max-width: 1400px;
+            height: 850px;
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .slides-wrapper {
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .slide {
+            display: none;
+            padding: 60px 70px 130px 70px;
+            height: 100%;
+            position: relative;
+            animation: slideIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            overflow-y: auto;
+        }
+        
+        .slide::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .slide::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+        
+        .slide::-webkit-scrollbar-thumb {
+            background: rgba(102, 126, 234, 0.6);
+            border-radius: 10px;
+        }
+        
+        .slide::-webkit-scrollbar-thumb:hover {
+            background: rgba(102, 126, 234, 0.8);
+        }
+        
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(100px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        .slide-number {
+            position: absolute;
+            bottom: 90px;
+            right: 40px;
+            font-size: 16px;
+            font-weight: 600;
+            opacity: 0.6;
+        }
+        
+        /* SLIDE 1 - Cover Modern Gradient */
+        .slide-1 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .slide-1::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            top: -200px;
+            right: -200px;
+        }
+        
+        .slide-1::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            bottom: -150px;
+            left: -150px;
+        }
+        
+        .slide-1 h1 {
+            font-size: 70px;
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 20px rgba(0,0,0,0.3);
+            z-index: 1;
+            animation: fadeInUp 1s;
+        }
+        
+        .slide-1 .subtitle {
+            font-size: 40px;
+            margin-bottom: 50px;
+            opacity: 0.95;
+            z-index: 1;
+            animation: fadeInUp 1.2s;
+        }
+        
+        .slide-1 .info {
+            font-size: 30px;
+            z-index: 1;
+            animation: fadeInUp 1.4s;
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* SLIDE 2 - Minimalist with Card */
+        .slide-2 {
+            background: linear-gradient(to right, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        
+        .slide-2 h2 {
+            color: #2c3e50;
+            font-size: 50px;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .slide-2 h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+        
+        .definition-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            margin: 30px 0;
+            border-left: 6px solid #667eea;
+        }
+        
+        .definition-card p {
+            font-size: 35px;
+            line-height: 1.8;
+            color: #34495e;
+        }
+        
+        .char-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-top: 35px;
+        }
+        
+        .char-item {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+            font-size: 30px;
+        }
+        
+        .char-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .char-item::before {
+            content: '✓';
+            color: #667eea;
+            font-size: 35px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        /* SLIDE 3 - Colorful Cards */
+        .slide-3 {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+        }
+        
+        .slide-3 h2 {
+            color: #8b0000;
+            font-size: 50px;
+            margin-bottom: 35px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .source-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .source-item {
+            background: rgba(255,255,255,0.9);
+            padding: 20px 25px;
+            border-radius: 15px;
+            border-left: 5px solid #ff6b6b;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+        
+        .source-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .source-item strong {
+            color: #ff6b6b;
+            font-size: 25px;
+        }
+        
+        .source-item p {
+            margin-top: 5px;
+            color: #555;
+            font-size: 25px;
+        }
+        
+        /* SLIDE 4 - Dark Modern */
+        .slide-4 {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+        }
+        
+        .slide-4 h2 {
+            color: white;
+            font-size: 50px;
+            margin-bottom: 35px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .org-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        
+        .org-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s;
+        }
+        
+        .org-card:hover {
+            background: rgba(255,255,255,0.2);
+            transform: scale(1.05);
+        }
+        
+        .org-card strong {
+            color: #ffd93d;
+            font-size: 30px;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .org-card p {
+            font-size: 30px;
+            line-height: 1.6;
+        }
+        
+        /* SLIDE 5 - Split Design */
+        .slide-5 {
+            background: linear-gradient(to right, #e0c3fc 0%, #8ec5fc 100%);
+            padding: 0;
+        }
+        
+        .split-container {
+            display: flex;
+            height: 100%;
+        }
+        
+        .split-header {
+            position: absolute;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+        }
+        
+        .split-header h2 {
+            color: #2c3e50;
+            font-size: 50px;
+            background: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .split-left, .split-right {
+            flex: 1;
+            padding: 120px 40px 40px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .split-left {
+            background: rgba(255,255,255,0.4);
+        }
+        
+        .split-right {
+            background: rgba(142,197,252,0.3);
+        }
+        
+        .split-box {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 15px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .split-box h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .split-box ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .split-box li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .split-box li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-size: 30px;
+        }
+        
+        .danger-badge {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 30px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        
+        /* SLIDE 6 - Neumorphism */
+        .slide-6 {
+            background: #e0e5ec;
+        }
+        
+        .slide-6 h2 {
+            color: #2c3e50;
+            font-size: 50px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .impact-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+        
+        .impact-box {
+            background: #e0e5ec;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 9px 9px 16px rgba(163,177,198,0.6), -9px -9px 16px rgba(255,255,255, 0.5);
+        }
+        
+        .impact-box h3 {
+            font-size: 40px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .impact-negative h3 {
+            color: #e74c3c;
+        }
+        
+        .impact-positive h3 {
+            color: #27ae60;
+        }
+        
+        .impact-box ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .impact-box li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            font-size: 30px;
+        }
+        
+        .impact-negative li::before {
+            content: '✗';
+            position: absolute;
+            left: 0;
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 35px;
+        }
+        
+        .impact-positive li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 35px;
+        }
+        
+        /* SLIDE 7-9 - Glassmorphism */
+        .slide-strategy {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .slide-strategy h2 {
+            color: white;
+            font-size: 50px;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .strategy-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-5px);
+        }
+        
+        .glass-card h3 {
+            font-size: 47px;
+            margin-bottom: 15px;
+            color: #ffd93d;
+        }
+        
+        .glass-card p {
+            margin: 8px 0;
+            font-size: 47px;
+            line-height: 1.6;
+        }
+        
+        .glass-card strong {
+            color: #ffd93d;
+        }
+        
+        .warning-badge {
+            background: rgba(255, 107, 107, 0.9);
+            padding: 8px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 47px;
+            font-weight: bold;
+        }
+        
+        /* SLIDE 10 - Gradient Cards */
+        .slide-10 {
+            background: linear-gradient(to bottom right, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+        }
+        
+        .slide-10 h2 {
+            color: #8b0000;
+            font-size: 50px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .best-practice-box {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .best-practice-box h3 {
+            color: #ff6b6b;
+            font-size: 35px;
+        }
+        
+        .practice-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        
+        .practice-card {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+        
+        .practice-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .practice-card strong {
+            color: #ff6b6b;
+            font-size: 35px;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        /* SLIDE 11 - Modern List */
+        .slide-11 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .slide-11 h2 {
+            color: white;
+            font-size: 50px;
+            margin-bottom: 35px;
+            text-align: center;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .conclusion-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .conclusion-list li {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 18px 25px;
+            border-radius: 15px;
+            margin: 15px 0;
+            border-left: 5px solid #ffd93d;
+            font-size: 30px;
+            line-height: 1.6;
+            transition: all 0.3s;
+        }
+        
+        .conclusion-list li:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateX(10px);
+        }
+        
+        .highlight-text {
+            color: #ffd93d;
+            font-weight: bold;
+        }
+        
+        .final-box {
+            background: rgba(255,217,61,0.2);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 20px;
+            margin-top: 30px;
+            text-align: center;
+            font-size: 35px;
+            font-weight: bold;
+            border: 2px solid rgba(255,217,61,0.5);
+        }
+        
+        /* SLIDE 12 - Thank You */
+        .slide-12 {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .slide-12::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            top: -300px;
+            left: -300px;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .slide-12::after {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            bottom: -250px;
+            right: -250px;
+            animation: float 6s ease-in-out infinite reverse;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .slide-12 h1 {
+            font-size: 64px;
+            margin-bottom: 30px;
+            z-index: 1;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .slide-12 .subtitle {
+            font-size: 28px;
+            margin-bottom: 50px;
+            z-index: 1;
+        }
+        
+        .slide-12 .contact-info {
+            z-index: 1;
+            font-size: 18px;
+        }
+        
+        .slide-12 .contact-info p {
+            margin: 10px 0;
+        }
+        
+        /* Navigation */
+        .navigation {
+            position: relative;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 30px;
+            background: rgba(255,255,255,0.98);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(0,0,0,0.1);
+            z-index: 100;
+        }
+        
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+        
+        button:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+        
+        .progress-dots {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+        }
+        
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ccc;
+            transition: all 0.3s;
+        }
+        
+        .dot.active {
+            background: #667eea;
+            width: 24px;
+            border-radius: 4px;
+        }
+        
+        @media (max-width: 768px) {
+            .presentation-container {
+                height: auto;
+                min-height: 600px;
+            }
+            
+            .slide {
+                padding: 40px 25px;
+            }
+            
+            .char-grid, .org-grid, .impact-container, .practice-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .split-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <div class="slides-wrapper">
+        <!-- Slide 1: Cover -->
+        <div class="slide slide-1 active">
+            <h1>RESISTENSI DALAM<br>MANAJEMEN PERUBAHAN</h1>
+            <div class="subtitle">Modul 4 - Manajemen Perubahan</div>
+            <div class="info">
+                <p>📚 Universitas Terbuka</p>
+                <p>🎓 Fakultas Ekonomi</p>
+                <p>📅 2025</p>
+            </div>
+        </div>
+        
+        <!-- Slide 2: Pengertian -->
+        <div class="slide slide-2">
+            <h2>Pengertian Resistensi Perubahan</h2>
+            <div class="definition-card">
+                <p><strong>Resistensi terhadap perubahan</strong> adalah penolakan untuk mendukung atau melakukan penyesuaian organisasi yang dipersepsikan sebagai ancaman.</p>
+            </div>
+            <div class="char-grid">
+                <div class="char-item">
+                    <strong>Respons Alamiah</strong><br>
+                    Reaksi normal terhadap ketidakpastian
+                </div>
+                <div class="char-item">
+                    <strong>Beragam Bentuk</strong><br>
+                    Terbuka maupun tersembunyi
+                </div>
+                <div class="char-item">
+                    <strong>Multi-Level</strong><br>
+                    Individu, kelompok, organisasi
+                </div>
+                <div class="char-item">
+                    <strong>Tidak Selalu Negatif</strong><br>
+                    Bisa jadi feedback penting
+                </div>
+            </div>
+            <div class="slide-number">2/12</div>
+        </div>
+        
+        <!-- Slide 3: Sumber Individual -->
+        <div class="slide slide-3">
+            <h2>Sumber Resistensi Individual</h2>
+            <div class="source-list">
+                <div class="source-item">
+                    <strong>1. Kebiasaan (Habit)</strong>
+                    <p>Kecenderungan mempertahankan rutinitas yang nyaman</p>
+                </div>
+                <div class="source-item">
+                    <strong>2. Rasa Aman (Security)</strong>
+                    <p>Kekhawatiran akan stabilitas pekerjaan dan posisi</p>
+                </div>
+                <div class="source-item">
+                    <strong>3. Faktor Ekonomi</strong>
+                    <p>Khawatir penghasilan atau benefit berkurang</p>
+                </div>
+                <div class="source-item">
+                    <strong>4. Takut yang Tidak Diketahui</strong>
+                    <p>Kecemasan terhadap ketidakpastian masa depan</p>
+                </div>
+                <div class="source-item">
+                    <strong>5. Pemrosesan Informasi Selektif</strong>
+                    <p>Fokus pada info negatif, abaikan manfaat</p>
+                </div>
+            </div>
+            <div class="slide-number">3/12</div>
+        </div>
+        
+        <!-- Slide 4: Sumber Organisasional -->
+        <div class="slide slide-4">
+            <h2>Sumber Resistensi Organisasional</h2>
+            <div class="org-grid">
+                <div class="org-card">
+                    <strong>Inersia Struktural</strong>
+                    <p>Sistem kaku menghambat perubahan</p>
+                </div>
+                <div class="org-card">
+                    <strong>Fokus Terbatas</strong>
+                    <p>Perubahan satu area pengaruhi yang lain</p>
+                </div>
+                <div class="org-card">
+                    <strong>Inersia Kelompok</strong>
+                    <p>Norma kelompok hambat individu</p>
+                </div>
+                <div class="org-card">
+                    <strong>Ancaman Keahlian</strong>
+                    <p>Expertise lama jadi tidak relevan</p>
+                </div>
+                <div class="org-card">
+                    <strong>Ancaman Sumber Daya</strong>
+                    <p>Redistribusi budget ancam departemen</p>
+                </div>
+                <div class="org-card">
+                    <strong>Ancaman Kekuasaan</strong>
+                    <p>Perubahan geser/kurangi power</p>
+                </div>
+            </div>
+            <div class="slide-number">4/12</div>
+        </div>
+        
+        <!-- Slide 5: Bentuk Resistensi -->
+        <div class="slide slide-5">
+            <div class="split-header">
+                <h2>Bentuk-Bentuk Resistensi</h2>
+            </div>
+            <div class="split-container">
+                <div class="split-left">
+                    <div class="split-box">
+                        <h3>1. Terbuka & Langsung</h3>
+                        <p><strong>Karakteristik:</strong> Eksplisit, mudah diidentifikasi</p>
+                        <ul>
+                            <li>Protes verbal</li>
+                            <li>Penolakan langsung</li>
+                            <li>Demonstrasi</li>
+                        </ul>
+                        <span class="danger-badge">⚠️ Bahaya: Tinggi</span>
+                    </div>
+                    <div class="split-box">
+                        <h3>3. Pasif-Agresif</h3>
+                        <p><strong>Karakteristik:</strong> Setuju tapi tak bertindak</p>
+                        <ul>
+                            <li>"Lupa" deadline</li>
+                            <li>Minimal effort</li>
+                            <li>Rumor negatif</li>
+                        </ul>
+                        <span class="danger-badge">⚠️⚠️ Bahaya: Sangat Tinggi</span>
+                    </div>
+                </div>
+                <div class="split-right">
+                    <div class="split-box">
+                        <h3>2. Implisit & Tertunda</h3>
+                        <p><strong>Karakteristik:</strong> Tersembunyi, sulit deteksi</p>
+                        <ul>
+                            <li>Turun loyalitas</li>
+                            <li>Hilang motivasi</li>
+                            <li>Error meningkat</li>
+                            <li>Absensi tinggi</li>
+                        </ul>
+                        <span class="danger-badge">⚠️⚠️⚠️ Bahaya: Sangat Tinggi</span>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">5/12</div>
+        </div>
+        
+        <!-- Slide 6: Dampak -->
+        <div class="slide slide-6">
+            <h2>Dampak Resistensi Perubahan</h2>
+            <div class="impact-container">
+                <div class="impact-box impact-negative">
+                    <h3>❌ Dampak Negatif</h3>
+                    <ul>
+                        <li>Kegagalan program perubahan</li>
+                        <li>Penurunan produktivitas</li>
+                        <li>Peningkatan biaya</li>
+                        <li>Kerusakan iklim organisasi</li>
+                        <li>Kehilangan talenta</li>
+                        <li>Tertinggal dari kompetitor</li>
+                    </ul>
+                </div>
+                <div class="impact-box impact-positive">
+                    <h3>✓ Dampak Positif</h3>
+                    <ul>
+                        <li>Mekanisme kontrol</li>
+                        <li>Identifikasi masalah</li>
+                        <li>Perbaikan komunikasi</li>
+                        <li>Perubahan lebih matang</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="slide-number">6/12</div>
+        </div>
+        
+        <!-- Slide 7: Strategi 1-2 -->
+        <div class="slide slide-strategy">
+            <h2>Strategi Mengatasi Resistensi (1-2)</h2>
+            <div class="strategy-container">
+                <div class="glass-card">
+                    <h3>1️⃣ Pendidikan & Komunikasi</h3>
+                    <p><strong>Kondisi:</strong> Kurangnya informasi atau misinformasi</p>
+                    <p><strong>Cara:</strong> Town hall meeting, newsletter, sesi Q&A, multi-channel communication</p>
+                    <p><strong>✓ Kelebihan:</strong> Membangun pemahaman dan dukungan jangka panjang</p>
+                    <p><strong>✗ Kekurangan:</strong> Memerlukan waktu lama</p>
+                </div>
+                <div class="glass-card">
+                    <h3>2️⃣ Partisipasi & Keterlibatan</h3>
+                    <p><strong>Kondisi:</strong> Membutuhkan input dari stakeholder</p>
+                    <p><strong>Cara:</strong> Bentuk tim perubahan, workshop, libatkan dalam desain</p>
+                    <p><strong>✓ Kelebihan:</strong> Meningkatkan komitmen dan ownership</p>
+                    <p><strong>✗ Kekurangan:</strong> Proses sangat lambat</p>
+                </div>
+            </div>
+            <div class="slide-number">7/12</div>
+        </div>
+        
+        <!-- Slide 8: Strategi 3-4 -->
+        <div class="slide slide-strategy">
+            <h2>Strategi Mengatasi Resistensi (3-4)</h2>
+            <div class="strategy-container">
+                <div class="glass-card">
+                    <h3>3️⃣ Fasilitasi & Dukungan</h3>
+                    <p><strong>Kondisi:</strong> Masalah penyesuaian dan adaptasi</p>
+                    <p><strong>Cara:</strong> Program pelatihan, coaching, mentoring, konseling</p>
+                    <p><strong>✓ Kelebihan:</strong> Efektif mengatasi masalah adjustment</p>
+                    <p><strong>✗ Kekurangan:</strong> Mahal dan memakan waktu</p>
+                </div>
+                <div class="glass-card">
+                    <h3>4️⃣ Negosiasi & Kesepakatan</h3>
+                    <p><strong>Kondisi:</strong> Pihak berkuasa akan kehilangan sesuatu</p>
+                    <p><strong>Cara:</strong> Tawarkan insentif, kompensasi, jaminan keamanan kerja</p>
+                    <p><strong>✓ Kelebihan:</strong> Menghindari resistensi besar</p>
+                    <p><strong>✗ Kekurangan:</strong> Bisa sangat mahal</p>
+                </div>
+            </div>
+            <div class="slide-number">8/12</div>
+        </div>
+        
+        <!-- Slide 9: Strategi 5-6 -->
+        <div class="slide slide-strategy">
+            <h2>Strategi Mengatasi Resistensi (5-6)</h2>
+            <div class="strategy-container">
+                <div class="glass-card">
+                    <h3>5️⃣ Manipulasi & Kooptasi</h3>
+                    <p><strong>Kondisi:</strong> Taktik lain tidak efektif atau terlalu mahal</p>
+                    <p><strong>Cara:</strong> Beri posisi ke opinion leader, libatkan resistor dalam tim</p>
+                    <p><strong>✓ Kelebihan:</strong> Cepat dan murah</p>
+                    <p><strong>✗ Kekurangan:</strong> Risiko kehilangan kepercayaan</p>
+                    <span class="warning-badge">⚠️ PERHATIAN: Isu Etika - Gunakan dengan Hati-hati!</span>
+                </div>
+                <div class="glass-card">
+                    <h3>6️⃣ Paksaan (Coercion)</h3>
+                    <p><strong>Kondisi:</strong> Situasi krisis, sangat mendesak</p>
+                    <p><strong>Cara:</strong> Ultimatum, konsekuensi tegas, sanksi disipliner</p>
+                    <p><strong>✓ Kelebihan:</strong> Sangat cepat dan efektif</p>
+                    <p><strong>✗ Kekurangan:</strong> Merusak hubungan jangka panjang</p>
+                    <span class="warning-badge">⚠️⚠️ PILIHAN TERAKHIR!</span>
+                </div>
+            </div>
+            <div class="slide-number">9/12</div>
+        </div>
+        
+        <!-- Slide 10: Pendekatan Terbaik -->
+        <div class="slide slide-10">
+            <h2>Pendekatan Terbaik</h2>
+            <div class="best-practice-box">
+                <h3>🎯 Gunakan Pendekatan Integratif & Kontinjensi</h3>
+            </div>
+            <div class="practice-grid">
+                <div class="practice-card">
+                    <strong>Kombinasi Strategi</strong>
+                    <p>Jangan hanya gunakan satu strategi, sesuaikan dengan konteks</p>
+                </div>
+                <div class="practice-card">
+                    <strong>Mulai Soft Approach</strong>
+                    <p>Komunikasi dan partisipasi terlebih dahulu</p>
+                </div>
+                <div class="practice-card">
+                    <strong>Tingkatkan jika Perlu</strong>
+                    <p>Ke negosiasi atau paksaan hanya pilihan terakhir</p>
+                </div>
+                <div class="practice-card">
+                    <strong>Pertimbangkan Jangka Panjang</strong>
+                    <p>Dampak terhadap hubungan dan budaya organisasi</p>
+                </div>
+                <div class="practice-card">
+                    <strong>Sesuaikan Budaya</strong>
+                    <p>Budaya partisipatif vs otokratis butuh pendekatan berbeda</p>
+                </div>
+                <div class="practice-card">
+                    <strong>Fleksibilitas Kunci</strong>
+                    <p>Sesuaikan strategi jika tidak efektif</p>
+                </div>
+            </div>
+            <div class="slide-number">10/12</div>
+        </div>
+        
+        <!-- Slide 11: Kesimpulan -->
+        <div class="slide slide-11">
+            <h2>✨ Kesimpulan</h2>
+            <ul class="conclusion-list">
+                <li><span class="highlight-text">Resistensi adalah fenomena alami</span> yang perlu dipahami dan dikelola dengan bijak</li>
+                <li>Sumber resistensi berasal dari <span class="highlight-text">individual dan organisasional</span></li>
+                <li>Bentuk resistensi bervariasi: <span class="highlight-text">terbuka, tersembunyi, dan pasif-agresif</span></li>
+                <li>Dampak resistensi bisa <span class="highlight-text">negatif dan positif</span></li>
+                <li>Tersedia <span class="highlight-text">6 strategi utama</span> mengatasi resistensi (Kotter & Schlesinger)</li>
+                <li>Kunci sukses: <span class="highlight-text">Fleksibilitas, komunikasi efektif, dan komitmen pimpinan</span></li>
+            </ul>
+            <div class="final-box">
+                🎯 Keberhasilan mengelola resistensi = Keberhasilan perubahan organisasi
+            </div>
+            <div class="slide-number">11/12</div>
+        </div>
+        
+        <!-- Slide 12: Thank You -->
+        <div class="slide slide-12">
+            <h1>✨ TERIMA KASIH ✨</h1>
+            <div class="subtitle">Pertanyaan & Diskusi</div>
+            <div class="contact-info">
+                <p></p>
+                <p>👥 Kelompok 2</p>
+                <p>🎓 Universitas Terbuka 2025</p>
+            </div>
+        </div>
+        </div>
+        
+        <div class="navigation">
+            <button id="prevBtn" onclick="changeSlide(-1)">← Sebelumnya</button>
+            <div class="progress-dots" id="progressDots"></div>
+            <button id="nextBtn" onclick="changeSlide(1)">Selanjutnya →</button>
+        </div>
+    </div>
+    
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        // Create progress dots
+        const progressDots = document.getElementById('progressDots');
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'dot';
+            dot.onclick = () => showSlide(i);
+            progressDots.appendChild(dot);
+        }
+        
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = n;
+            if (currentSlide >= totalSlides) currentSlide = totalSlides - 1;
+            if (currentSlide < 0) currentSlide = 0;
+            slides[currentSlide].classList.add('active');
+            
+            // Update buttons
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+            
+            // Update progress dots
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+        
+        function changeSlide(direction) {
+            showSlide(currentSlide + direction);
+        }
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
+            if (e.key === 'Home') showSlide(0);
+            if (e.key === 'End') showSlide(totalSlides - 1);
+        });
+        
+        // Touch swipe support
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        document.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+        
+        document.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+        
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) changeSlide(1);
+            if (touchEndX > touchStartX + 50) changeSlide(-1);
+        }
+        
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>
